@@ -1,0 +1,49 @@
+############################## SETUP KLFitter ###############
+
+1) Root --> 06.08.04 release
+mkdir Root060804 && cd Root060804
+tar xvfz rootxxxx
+cd rootxxxx
+mkdir buildroot
+cd buildroot
+cmake ..
+cmake -Dall=on .
+cmake -DCMAKE_INSTALL_PREFIX=~/root/rootxxxxxx-install .
+make -j 4
+make install
+cd 
+cd root/rootxxx
+source bin/thisroot.sh
+
+2) BAT 
+https://bat.mpp.mpg.de/
+sudo apt-get install build-essential curl
+sudo apt-get install autoconf automake git-core libtool
+
+tar -xzf BAT-x.x.tar.gz
+cd BAT-x.x
+git clone https://github.com/bat/bat
+cd bat
+./autogen.sh
+./configure --prefix=/path/to/install/bat
+make
+sudo make install  --> Prefix data that you got is used in ./bashrc  !!!
+bat-config
+pkg-config --modversion bat
+pkg-config --libs bat
+
+
+
+3)KLFitter
+ https://github.com/KLFitter/KLFitter
+
+git clone https://github.com/KLFitter/KLFitter.git
+cd KLFitter
+git checkout $VERSION_TAG
+mkdir build && cd build
+cmake -DBUILTIN_BAT=TRUE ..
+make -j 4 
+./bin/example-top-ljets.exe ../
+
+
+
